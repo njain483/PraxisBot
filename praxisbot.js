@@ -6,7 +6,7 @@ function MessageHandler(context, event) {
     sendMessageToApiAi({
         message : event.message,
         sessionId : new Date().getTime() +'api',
-        nlpToken : "4ce699a0f6a04c4392feb70f83167ebf",
+        nlpToken : "227ade3cb57f476dabc1a3d6644c5613",
         callback : function(res){
             //Sample response from apiai here.
             context.sendResponse(JSON.parse(res).result.fulfillment.speech);
