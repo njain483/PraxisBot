@@ -1,10 +1,10 @@
 /** This is a sample code for your bot**/
 function MessageHandler(context, event) {
-    
+
 }
 /** Functions declared below are required **/
 function EventHandler(context, event) {
-    
+
 }
 
 function HttpResponseHandler(context, event) {
