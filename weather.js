@@ -11,10 +11,19 @@ function MessageHandler(context, event) {
           intentname=JSON.parse(res).result.metadata.intentName;
           if (intentname=="weather" && JSON.parse(res).result.parameters.geocity!="")
             callWeatherAPI(JSON.parse(res).result.parameters.geocity);
+          else if (intentname=="pagespeed" && JSON.parse(res).result.parameters.url!="")
+            callPageSpeedAPI(JSON.parse(res).result.parameters.url);
           else
             context.sendResponse(JSON.parse(res).result.fulfillment.speech);
         }
     },context)
+}
+
+function callPageSpeedAPI(url)
+{
+
+  var apiurl="https://www.googleapis.com/pagespeedonline/v1/runPagespeed?url=http%3A%2F%2F"+url;
+  context.simplehttp.makeGet(apiurl);
 }
 
 function callWeatherAPI(loc)
@@ -69,6 +78,12 @@ function HttpResponseHandler(context, event) {
       var finalweather=[currentweather, {"type":"image","originalUrl":"http:"+weatherapi.current.condition.icon,"previewUrl":"http:"+weatherapi.current.condition.icon
       }];
       context.sendResponse(JSON.stringify(finalweather));
+    }
+    else if (intentname=="pagespeed") {
+      var pagespeedapi=JSON.parse(event.getresp);
+      var score=pagespeedapi.score;
+      score = "Score for "+pagespeedapi.title+" is "+score+"/100";
+      context.sendResponse(score);
     }
 }
 
