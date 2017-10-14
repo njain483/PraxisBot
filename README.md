@@ -9,3 +9,6 @@ He likes having certain small talks like hi and hellos!
 **Functionalities**
 - Small talks
 - Weather
+
+**API's Used**
+- API.ai
