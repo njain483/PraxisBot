@@ -10,6 +10,7 @@ He likes having certain small talks like hi and hellos!
 **Functionalities**
 - Small talks
 - Weather
+- Tells information about Amit & Nikhil
 
 **API's Used**
 - API.ai
