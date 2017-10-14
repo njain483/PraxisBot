@@ -5,11 +5,11 @@ function MessageHandler(context, event) {
     sendMessageToApiAi({
         message : event.message,
         sessionId : new Date().getTime() +'api',
-        nlpToken : "77052f0d40cc4a34925aa30a882d298c",
+        nlpToken : "227ade3cb57f476dabc1a3d6644c5613",
         callback : function(res){
           var loc="";
           intentname=JSON.parse(res).result.metadata.intentName;
-          if (intentname=="weather")
+          if (intentname=="weather" && JSON.parse(res).result.parameters.geocity!="")
             callWeatherAPI(JSON.parse(res).result.parameters.geocity);
           else
             context.sendResponse(JSON.parse(res).result.fulfillment.speech);
@@ -57,7 +57,7 @@ function EventHandler(context, event) {
         context.simpledb.botleveldata.numinstance = 0;
     numinstances = parseInt(context.simpledb.botleveldata.numinstance) + 1;
     context.simpledb.botleveldata.numinstance = numinstances;
-    context.sendResponse("Thanks for adding me. You are:" + numinstances);
+    context.sendResponse("Thanks for adding Praxis Bot. You are:" + numinstances);
 }
 
 function HttpResponseHandler(context, event) {
@@ -65,7 +65,10 @@ function HttpResponseHandler(context, event) {
     if (intentname=="weather") {
       var weatherapi=JSON.parse(event.getresp);
       var currentweather=weatherapi.current.condition.text;
-      context.sendResponse(currentweather);
+      currentweather = "Today's Weather: "+currentweather+"\r\nTemperature: "+weatherapi.current.temp_c+" °C";
+      var finalweather=[currentweather, {"type":"image","originalUrl":"http:"+weatherapi.current.condition.icon,"previewUrl":"http:"+weatherapi.current.condition.icon
+      }];
+      context.sendResponse(JSON.stringify(finalweather));
     }
 }
 
