@@ -1,5 +1,4 @@
 var intentname="";
-/** This is a sample code for your bot**/
 function MessageHandler(context, event) {
     // var nlpToken = "xxxxxxxxxxxxxxxxxxxxxxx";//Your API.ai token
     // context.sendResponse(JSON.stringify(event));
@@ -9,15 +8,19 @@ function MessageHandler(context, event) {
         nlpToken : "77052f0d40cc4a34925aa30a882d298c",
         callback : function(res){
           var loc="";
-          var intentname=JSON.parse(res).result.metadata.intentname;
+          intentname=JSON.parse(res).result.metadata.intentName;
           if (intentname=="weather")
-          {
-              loc=apiai.parameters.geo-city;
-              context.simplehttp.makeGet("http://api.apixu.com/v1/current.json?key=9e854b895368407c979120711171410&q=Paris");
-          }
+            callWeatherAPI(JSON.parse(res).result.parameters.geocity);
+          else
             context.sendResponse(JSON.parse(res).result.fulfillment.speech);
         }
     },context)
+}
+
+function callWeatherAPI(loc)
+{
+  var url="https://api.apixu.com/v1/current.json?key=9e854b895368407c979120711171410&q="+loc;
+  context.simplehttp.makeGet(url);
 }
 
 function sendMessageToApiAi(options,botcontext) {
@@ -62,8 +65,8 @@ function HttpResponseHandler(context, event) {
     if (intentname=="weather") {
       var weatherapi=JSON.parse(event.getresp);
       var currentweather=weatherapi.current.condition.text;
+      context.sendResponse(currentweather);
     }
-    context.sendResponse(currentweather);
 }
 
 function DbGetHandler(context, event) {
