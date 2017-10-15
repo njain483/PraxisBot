@@ -6,10 +6,12 @@ Beta Bot to be released soon.
 ---
 
 ##Persona
+
 Praxis is a young, funny and a cheerful bot!  
 He likes having certain small talks like 'what's up' and 'I like you!'.
 
 ##Machine Learning / Training
+
 By testing this Bot on different human users, we have managed to train the Bot for
 giving correct responses.
 - eg: Fatcs -> Facts (such mistakes are rectified)
