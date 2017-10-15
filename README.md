@@ -6,7 +6,7 @@ Beta Bot to be released soon.
 ---
 
 ##Persona
-
+---
 Praxis is a young, funny and a cheerful bot!  
 He likes having certain small talks like 'what's up' and 'I like you!'.
 
