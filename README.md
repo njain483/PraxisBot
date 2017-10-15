@@ -1,6 +1,6 @@
 # Praxisbot
-Created as a First Time hands on delta bot.
 
+Created as a First Time hands on delta bot.  
 Beta Bot to be released soon.
 
 ---
@@ -9,6 +9,7 @@ Persona
 ---
 Praxis is a young, funny and a cheerful bot!  
 He likes having certain small talks like 'what's up' and 'I like you!'.
+
 ---
 
 Machine Learning / Training
@@ -34,4 +35,5 @@ API's Used
 - API.ai (DialogFlow)
 - APIXU (Weather API)
 - Google Webscore API
+
 ---
